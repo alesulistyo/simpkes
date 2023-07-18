@@ -1,6 +1,6 @@
-## Sistem Pemantauan Kesehatan (SIMPKES):
+## Sistem Pemantauan Kesehatan (SIMPKES)
 
-Sistem Pemantauan Kesehatan berbasis Internet of Things
+Implementasi Algoritma Fuzzy Logic pada Sistem Pemantauan Kesehatan berbasis Internet of Things.
 
 ## Instalasi
 
