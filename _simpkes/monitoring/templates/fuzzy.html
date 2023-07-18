@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- FONT AWESOME CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="{% static "css/fuzzy.css" %}">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <a class="active" href="/monitor"><button>BERANDA</button></a>
+      <a href="/riwayat"><button>RIWAYAT</button></a>
+    </div>
+
+    <div class="box">
+      <div class="container">
+        <div class="header">
+          <div class="heading">{{heading}}</div>
+        </div>
+
+        <div id="datasensor" class="content">
+          <div id="spo2_div">
+            <h1>{{spo2}}<span style="font-size: 18px; font-weight: 400">%SpO2</span></h1>
+          </div>
+
+          <div id="bpm_div">
+            <h1>{{bpm}}<span style="font-size: 18px; font-weight: 400">BPM</span></h1>
+          </div>
+
+          <div id="temp_div">
+            <h1>{{temp}}<span style="font-size: 18px; font-weight: 400">°C</span></h1>
+          </div>
+        </div>
+
+        <div class="status-wrapper">
+          <div class="status">
+            <p id="status">{{hasil_status}}</p>
+            <p style="color: white; font-size: 16px">
+              <strong id="spo2">{{hasil_spo2}}</strong> %SpO2 | <strong id="bpm">{{hasil_bpm}}</strong> BPM | <strong id="temp">{{hasil_temp}}</strong>°C
+            </p>
+          </div>
+        </div>
+
+        <div id="form" class="form">
+          <form action="" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{id}}" />
+            <input type="hidden" name="spo2" value="{{spo2}}" />
+            <input type="hidden" name="bpm" value="{{bpm}}" />
+            <input type="hidden" name="temp" value="{{temp}}" />
+            <input id="btn_proses" type="submit" name="button" value="PROSES" />
+          </form>
+        </div>
+
+        <div style="text-align: center">
+          <!-- Trigger/Open The Modal -->
+          <button id="myBtn">Perhitungan</button>
+        </div>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <div style="text-align: center">
+              <strong>Fungsi Keanggotaan</strong>
+              <p><img src="/static/img/plot_MF.jpg" alt="" width="50%" height="50%" /></p>
+              <br /><br />
+            </div>
+          </div>
+
+          <div class="modal-content">
+            <div style="text-align: center">
+              <strong>Fuzzifikasi</strong>
+              <p><img src="/static/img/fuzz_spo2.jpg" alt="" width="25%" height="25%" /></p>
+              <p>{{mu_spo2}}</p>
+              <br /><br />
+
+              <p><img src="/static/img/fuzz_bpm.jpg" alt="" width="25%" height="25%" /></p>
+              <p>{{mu_bpm}}</p>
+              <br /><br />
+
+              <p><img src="/static/img/fuzz_suhu.jpg" alt="" width="25%" height="25%" /></p>
+              <p>{{mu_temp}}</p>
+              <br /><br />
+            </div>
+          </div>
+
+          <div class="modal-content">
+            <div style="text-align: center">
+              <strong>Inferensi</strong>
+              <p>Contoh:</p>
+              <p>R1 = "IF (SPO2 IS Rendah) AND (BPM IS Rendah) AND (TEMP IS Rendah) THEN (Hipoksemia IS Berat)"</p>
+              <p>α-predikat1 = min(μRendah(x);μRendah(x);μRendah(x))</p>
+              <br />
+              <p>{{inferensi}}</p>
+              <br />
+            </div>
+          </div>
+
+          <div class="modal-content">
+            <div style="text-align: center">
+              <p><strong>Agregasi</strong></p>
+              <p>{{max}}</p>
+              <img id="blend_img" src="/static/img/blend.png" alt="" width="50%" height="50%" />
+            </div>
+            <div style="text-align: center">
+              <p><strong>Defuzzifikasi</strong></p>
+              <img id="cog_img" src="/static/img/cog.png" alt="" width="50%" height="50%" />
+              <p>{{deff}}</p>
+              <p>{{stat}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    $(document).ready(function () {
+      setInterval(function () {
+        $("#datasensor").load(" #datasensor", function () {
+          $(this).children().unwrap();
+        });
+        $("#form").load(" #form", function () {
+          $(this).children().unwrap();
+        });
+      }, 1000);
+    });
+  </script>
+
+  <script>
+    function refreshblend() {
+      var timestamp = new Date().getTime();
+      var el = document.getElementById("blend_img");
+      el.src = "/static/img/blend.png?t=" + timestamp;
+    }
+
+    function refreshcog() {
+      var timestamp = new Date().getTime();
+      var el = document.getElementById("cog_img");
+      el.src = "/static/img/cog.png?t=" + timestamp;
+    }
+
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function () {
+      modal.style.display = "block";
+      refreshblend();
+      refreshcog();
+    };
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
+</html>

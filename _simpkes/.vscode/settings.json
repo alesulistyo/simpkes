@@ -1,0 +1,11 @@
+{
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "isort.args": ["--profile", "black"],
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfArgs": ["--style", "{based_on_style: yapf, column_limit: 160}"]
+}

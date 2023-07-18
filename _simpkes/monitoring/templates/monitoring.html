@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- FONT AWESOME CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="{% static "css/monitoring.css" %}">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <a class="active" href="/monitor"><button>BERANDA</button></a>
+      <a href="/riwayat"><button>RIWAYAT</button></a>
+    </div>
+
+    <div class="box">
+      <div class="container">
+        <div class="header">
+          <div class="heading">{{heading}}</div>
+        </div>
+
+        <div id="datasensor" class="content">
+          <div id="spo2_div">
+            <h1>{{spo2}}<span style="font-size: 18px; font-weight: 400">%SpO2</span></h1>
+          </div>
+
+          <div id="bpm_div">
+            <h1>{{bpm}}<span style="font-size: 18px; font-weight: 400">BPM</span></h1>
+          </div>
+
+          <div id="temp_div">
+            <h1>{{temp}}<span style="font-size: 18px; font-weight: 400">°C</span></h1>
+          </div>
+        </div>
+
+        <div id="form" class="form">
+          <form action="fuzzy/" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{id}}" />
+            <input type="hidden" name="spo2" value="{{spo2}}" />
+            <input type="hidden" name="bpm" value="{{bpm}}" />
+            <input type="hidden" name="temp" value="{{temp}}" />
+            <input id="btn_proses" type="submit" name="button" value="PROSES" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    $(document).ready(function () {
+      setInterval(function () {
+        $("#datasensor").load(" #datasensor", function () {
+          $(this).children().unwrap();
+        });
+        $("#form").load(" #form", function () {
+          $(this).children().unwrap();
+        });
+      }, 1000);
+    });
+  </script>
+</html>

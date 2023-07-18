@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- FONT AWESOME CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+  </head>
+
+  <body>
+    <div class="box">
+      <div class="container">
+        <div class="header">
+          <div class="heading">{{heading}}</div>
+        </div>
+        <div class="content">
+          <a href="/monitor"><img id="logo" src="/static/img/logo.png" alt="logo" width="258" height="254" /></a>
+        </div>
+        <div class="footer">
+          <span id="foot">{{foot}}</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

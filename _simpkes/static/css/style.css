@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;600;700&family=Yeseva+One&display=swap");
+
+:root {
+  --primary: #0d0d0d;
+  --secondary: #191919;
+  --tertiary: #2a2a2a;
+  --accent: #d1b280;
+
+  --text-white: #f6f6f6;
+  --text-black: #0d0d0d;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Josefin Sans";
+
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--tertiary);
+
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.box {
+  height: 649.6px;
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: center;
+
+  margin-top: 64px;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 6px;
+}
+
+/* CONTAINER */
+.container {
+  background: rgba(25, 25, 25, 0.8);
+
+  height: 576px;
+  width: 75%;
+
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+}
+
+/* HEADER */
+.header {
+  background-color: rgba(13, 13, 13, 0.8);
+  backdrop-filter: saturate(150%) blur(6px);
+
+  height: 64px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+}
+
+.heading {
+  color: var(--accent);
+  font-family: "Yeseva One";
+  font-size: 42px;
+}
+
+/* CONTENT */
+.content {
+  height: 448px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#logo {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#logo:hover {
+  filter: drop-shadow(0 0 0.75rem yellowgreen);
+}
+
+#logo:active {
+  transform: scale(0.97);
+  filter: drop-shadow(0 0 0.75rem yellowgreen);
+}
+
+/* FOOTER */
+.footer {
+  color: var(--text-white);
+  font-size: 16px;
+
+  height: 64px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

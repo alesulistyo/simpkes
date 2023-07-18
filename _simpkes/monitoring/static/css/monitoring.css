@@ -1,0 +1,218 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;600;700&family=Yeseva+One&display=swap");
+
+:root {
+  --primary: #0d0d0d;
+  --secondary: #191919;
+  --tertiary: #2a2a2a;
+  --accent: #d1b280;
+
+  --text-white: #f6f6f6;
+  --text-black: #0d0d0d;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Josefin Sans";
+
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--tertiary);
+
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+html,
+body {
+  height: 100%; /* 713.6px */
+}
+
+.box {
+  height: 649.6px;
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 6px;
+}
+
+/* NAVBAR */
+.navbar {
+  width: 75%;
+  height: 64px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+
+  margin: 0 auto;
+}
+
+.navbar button {
+  color: var(--text-white);
+  font-family: "Yeseva One";
+  font-size: 18px;
+  letter-spacing: 2px;
+
+  background: none;
+  border: none;
+  border-radius: 12px;
+
+  padding: 12px;
+
+  transition: 0.4s;
+}
+
+.navbar button:hover {
+  color: var(--accent);
+  background: rgba(13, 13, 13, 0.8);
+}
+
+.active button {
+  color: var(--accent);
+  background: rgba(13, 13, 13, 0.8);
+}
+
+/* CONTAINER */
+.container {
+  background: rgba(25, 25, 25, 0.8);
+
+  height: 576px;
+  width: 75%;
+
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+}
+
+/* HEADER */
+.header {
+  background-color: rgba(13, 13, 13, 0.8);
+  backdrop-filter: saturate(150%) blur(6px);
+
+  height: 64px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+}
+
+.heading {
+  color: var(--accent);
+  font-family: "Yeseva One";
+  font-size: 42px;
+}
+
+/* CONTENT */
+.content {
+  height: 384px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#spo2_div {
+  background-color: rgba(13, 13, 13, 0.8);
+  color: limegreen;
+  font-family: "Yeseva One";
+  font-size: 36px;
+
+  width: 256px;
+  height: 192px;
+
+  border-top-left-radius: 18px;
+  border-bottom-left-radius: 18px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#bpm_div {
+  background-color: rgba(13, 13, 13, 0.8);
+  color: crimson;
+  font-family: "Yeseva One";
+  font-size: 36px;
+
+  width: 256px;
+  height: 192px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#temp_div {
+  background-color: rgba(13, 13, 13, 0.8);
+  color: coral;
+  font-family: "Yeseva One";
+  font-size: 36px;
+
+  width: 256px;
+  height: 192px;
+
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* FORM */
+.form {
+  height: 128px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#btn_proses {
+  background: rgba(13, 13, 13, 0.8);
+  color: var(--accent);
+  font-family: "Yeseva One";
+  font-size: 24px;
+
+  padding: 12px;
+
+  border: none;
+  border-radius: 12px;
+
+  cursor: pointer;
+  transition: 0.75s;
+}
+
+#btn_proses:hover {
+  transform: scale(0.95);
+  box-shadow: 8px 6px 56px -14px var(--accent);
+}

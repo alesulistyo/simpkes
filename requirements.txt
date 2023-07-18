@@ -1,0 +1,9 @@
+django==3.2.*
+matplotlib
+mysqlclient
+pandas
+Pillow
+PyMySQL
+scikit-fuzzy
+simpful
+yapf
